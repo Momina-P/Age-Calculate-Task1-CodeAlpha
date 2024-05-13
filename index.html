@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            color: white;
+            background-image: url(./image/img1.webp);
+            background-repeat: no-repeat;
+            background-size: 100%;
+        }
+
+        form {
+            text-align: center;
+            margin-top: 10%;
+        }
+
+        .input {
+            padding: 10px 10px;
+            width: 250px;
+            background-color: white;
+            font-size: 16px;
+        }
+
+        h1 {
+            text-align: center;
+            font-style: bold;
+            font-family: sans-serif;
+            text-decoration: underline;
+            color: rgb(206, 18, 90);
+        }
+
+        .button {
+            text-transform: uppercase;
+            padding: 15px 15px;
+            border-radius: 20px;
+            width: 200px;
+            font-size: 19px;
+            background-color: #353535;
+            text-shadow: none;
+            border: 1px solid#ffffff80;
+            color: #ffffff80;
+            background: transparent;
+            box-shadow: transparent;
+            cursor: pointer;
+            transition: 0.5s ease;
+        }
+
+        .button:hover {
+            background-color: #6d0210;
+            text-shadow: 0 0 5px #ffffff, 0 0 20px #ffffff, 0 0 50px #ffffff;
+            box-shadow: 0 0 5px #6d0210, 0 0 20px #6d0210, 0 0 50px #6d0210, 0 0 100px #6d0210;
+        }
+
+        #result {
+            text-align: center;
+            font-family: sans-serif;
+            margin-top: 5%;
+            font-size: 19px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Calculate Your Age</h1>
+
+    <form id="from">
+        <input class="input" type="text" id="dob" placeholder="Date of Birth (YYYY-MM-DD)" required />
+        <br />
+        <br />
+        <br />
+        <input type="button" value="Calculate Age" class="button" onclick="calculateAge()"></input>
+    </form>
+
+    <div id="result"></div>
+
+    <script>
+        function calculateAge() {
+            var dobString = document.getElementById('dob').value
+            var dob = new Date(dobString)
+            var today = new Date()
+            var age = today.getFullYear() - dob.getFullYear()
+            var monthDiff = today.getMonth() - dob.getMonth()
+
+            if (
+                monthDiff < 0 ||
+                (monthDiff === 0 && today.getDate() < dob.getDate())
+            ) {
+                age--
+            }
+
+            document.getElementById('result').innerText = 'Your age is:' + age
+        }
+    </script>
+</body>
+
+</html>
